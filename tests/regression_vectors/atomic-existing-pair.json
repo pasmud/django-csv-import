@@ -1,0 +1,17 @@
+{
+  "title": "Check trimmed label and integer quantity against SQLite",
+  "csv": "SKU,Quantity,Name\ndemo-b,4,Tent\ndemo-c,01, Map ",
+  "existing": [{"sku": "DEMO-A", "quantity": 1, "label": "Map", "internal_note": "Earlier note", "active": false}],
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-b", "4", "Tent"]
+    ],
+    "issues": [
+      [3, null, "unique_together"]
+    ],
+    "insert_attempts": 0,
+    "created": []
+  }
+}
