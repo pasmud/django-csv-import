@@ -1,0 +1,19 @@
+{
+  "title": "Preserve existing rows after a late database constraint error",
+  "csv": "SKU,Quantity,Name\ndemo-b,2,Map\ndemo-x,3, Archive ",
+  "existing": [{"sku": "DEMO-OLD", "quantity": 1, "label": "Map", "internal_note": "Earlier note", "active": false}],
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-b", "2", "Map"],
+      [3, "demo-x", "3", " Archive "]
+    ],
+    "issues": [],
+    "apply_issues": [
+      [3, null, "integrity", "The database rejected the import. No rows were saved."]
+    ],
+    "insert_attempts": 2,
+    "created": []
+  }
+}
