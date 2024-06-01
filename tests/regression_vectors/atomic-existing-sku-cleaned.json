@@ -1,0 +1,17 @@
+{
+  "title": "Check cleaned SKU against existing database rows",
+  "csv": "SKU,Quantity,Name\ndemo-b,4,Tent\n demo-a ,2,Lamp",
+  "existing": [{"sku": "DEMO-A", "quantity": 1, "label": "Map", "internal_note": "Earlier note", "active": false}],
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-b", "4", "Tent"]
+    ],
+    "issues": [
+      [3, "SKU", "unique"]
+    ],
+    "insert_attempts": 0,
+    "created": []
+  }
+}
