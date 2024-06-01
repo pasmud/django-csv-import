@@ -1,0 +1,20 @@
+{
+  "title": "Roll back more than one insert when the last insert fails",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\ndemo-b,2,Lamp\ndemo-x,3,Archive",
+  "existing": [],
+  "expect": {
+    "row_count": 3,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map"],
+      [3, "demo-b", "2", "Lamp"],
+      [4, "demo-x", "3", "Archive"]
+    ],
+    "issues": [],
+    "apply_issues": [
+      [4, null, "integrity", "The database rejected the import. No rows were saved."]
+    ],
+    "insert_attempts": 3,
+    "created": []
+  }
+}
