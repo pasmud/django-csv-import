@@ -1,0 +1,20 @@
+{
+  "title": "Roll back preceding inserts and stop after a middle failure",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\ndemo-x,2,Archive\ndemo-z,3,Lamp",
+  "existing": [],
+  "expect": {
+    "row_count": 3,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map"],
+      [3, "demo-x", "2", "Archive"],
+      [4, "demo-z", "3", "Lamp"]
+    ],
+    "issues": [],
+    "apply_issues": [
+      [3, null, "integrity", "The database rejected the import. No rows were saved."]
+    ],
+    "insert_attempts": 2,
+    "created": []
+  }
+}
