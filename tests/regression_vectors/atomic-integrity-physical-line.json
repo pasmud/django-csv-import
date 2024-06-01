@@ -1,0 +1,19 @@
+{
+  "title": "Report the failing insert after a multiline record by start line",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"Trail\r\nMap\"\ndemo-x,3,Archive",
+  "existing": [],
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Trail\r\nMap"],
+      [4, "demo-x", "3", "Archive"]
+    ],
+    "issues": [],
+    "apply_issues": [
+      [4, null, "integrity", "The database rejected the import. No rows were saved."]
+    ],
+    "insert_attempts": 2,
+    "created": []
+  }
+}
