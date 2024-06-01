@@ -1,0 +1,19 @@
+{
+  "title": "Stop before later inserts when the first insert fails",
+  "csv": "SKU,Quantity,Name\ndemo-x,2,Archive\ndemo-a,1,Map",
+  "existing": [],
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-x", "2", "Archive"],
+      [3, "demo-a", "1", "Map"]
+    ],
+    "issues": [],
+    "apply_issues": [
+      [2, null, "integrity", "The database rejected the import. No rows were saved."]
+    ],
+    "insert_attempts": 1,
+    "created": []
+  }
+}
