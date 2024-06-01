@@ -1,0 +1,20 @@
+{
+  "title": "Check deferred foreign keys even for a row with a NULL slot",
+  "csv": "Slot\n\"\"",
+  "profile": "placement",
+  "parent": false,
+  "top_level_transaction": true,
+  "expect": {
+    "row_count": 1,
+    "headers": ["Slot"],
+    "sample": [
+      [2, ""]
+    ],
+    "issues": [],
+    "apply_issues": [
+      [null, null, "integrity"]
+    ],
+    "insert_attempts": 1,
+    "created": []
+  }
+}
