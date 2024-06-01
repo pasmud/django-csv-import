@@ -1,0 +1,22 @@
+{
+  "title": "Commit both placed rows when the default parent exists",
+  "csv": "Slot\n3\n\"\"",
+  "profile": "placement",
+  "parent": true,
+  "top_level_transaction": true,
+  "expect": {
+    "row_count": 2,
+    "headers": ["Slot"],
+    "sample": [
+      [2, "3"],
+      [3, ""]
+    ],
+    "issues": [],
+    "apply_issues": [],
+    "insert_attempts": 2,
+    "created": [
+      [1001, 3],
+      [1001, null]
+    ]
+  }
+}
