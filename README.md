@@ -100,3 +100,5 @@ python -m twine check --strict dist/*
 ```
 
 Tests use real Django and temporary SQLite databases. CI checks the supported Django branches on multiple Python versions and smoke-tests the installed wheel. See [LICENSE](LICENSE) for MIT terms.
+
+The synthetic vectors in `tests/regression_vectors/` exercise the public preview and import APIs against real Django forms and SQLite. They check CSV structure and physical line numbers, limits, mapped and defaulted fields, raw preview values, cleaned database values, uniqueness, and all-or-nothing writes. Run them with `python -m pytest -q tests/test_regression_vectors.py`; add `-k <scenario-slug>` to select a case. The offline generator, `python tests/generate_regression_vectors.py`, rebuilds the JSON from hand-specified expectations without importing Django.
