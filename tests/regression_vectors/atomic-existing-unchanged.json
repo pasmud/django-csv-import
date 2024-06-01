@@ -1,0 +1,19 @@
+{
+  "title": "Keep an existing row intact while adding distinct rows",
+  "csv": "SKU,Quantity,Name\ndemo-b,1,Lamp\ndemo-c,2,Map",
+  "existing": [{"sku": "DEMO-A", "quantity": 1, "label": "Map", "internal_note": "Earlier note", "active": false}],
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-b", "1", "Lamp"],
+      [3, "demo-c", "2", "Map"]
+    ],
+    "issues": [],
+    "insert_attempts": 2,
+    "created": [
+      ["DEMO-B", 1, "Lamp", "server default", true],
+      ["DEMO-C", 2, "Map", "server default", true]
+    ]
+  }
+}
