@@ -1,0 +1,17 @@
+{
+  "title": "Run the Archive check on cleaned note text",
+  "csv": "SKU,Quantity,Name,Note\ndemo-a,1,Map,Reviewed\ndemo-b,2,Archive, server default ",
+  "profile": "note",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name", "Note"],
+    "sample": [
+      [2, "demo-a", "1", "Map", "Reviewed"]
+    ],
+    "issues": [
+      [3, null, "invalid"]
+    ],
+    "insert_attempts": 0,
+    "created": []
+  }
+}
