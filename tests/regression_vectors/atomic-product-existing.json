@@ -1,0 +1,18 @@
+{
+  "title": "Revalidate an existing normalized SKU on the Product model",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-p,1,0,Map\ndemo-b,2,2,Lamp",
+  "profile": "product",
+  "existing": [{"sku": "DEMO-P", "price": "3.40", "stock": 3, "name": "Existing"}],
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [
+      [3, "demo-b", "2", "2", "Lamp"]
+    ],
+    "issues": [
+      [2, "SKU", "unique"]
+    ],
+    "insert_attempts": 0,
+    "created": []
+  }
+}
