@@ -1,0 +1,19 @@
+{
+  "title": "Roll back repeated non-null slots when parent is unmapped",
+  "csv": "Slot\n2\n02",
+  "profile": "placement",
+  "expect": {
+    "row_count": 2,
+    "headers": ["Slot"],
+    "sample": [
+      [2, "2"],
+      [3, "02"]
+    ],
+    "issues": [],
+    "apply_issues": [
+      [3, null, "integrity"]
+    ],
+    "insert_attempts": 2,
+    "created": []
+  }
+}
