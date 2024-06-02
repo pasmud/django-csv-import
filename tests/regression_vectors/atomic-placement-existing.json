@@ -1,0 +1,20 @@
+{
+  "title": "Preserve existing placements after a later slot conflict",
+  "csv": "Slot\n3\n2",
+  "profile": "placement",
+  "existing": [{"item_id": 1001, "slot": 2}],
+  "expect": {
+    "row_count": 2,
+    "headers": ["Slot"],
+    "sample": [
+      [2, "3"],
+      [3, "2"]
+    ],
+    "issues": [],
+    "apply_issues": [
+      [3, null, "integrity"]
+    ],
+    "insert_attempts": 2,
+    "created": []
+  }
+}
