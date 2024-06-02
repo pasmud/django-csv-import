@@ -1,0 +1,19 @@
+{
+  "title": "Allow other labels to keep the mapped default note",
+  "csv": "SKU,Quantity,Name,Note\ndemo-a,1,Map,Reviewed\ndemo-b,2,Current,server default",
+  "profile": "note",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name", "Note"],
+    "sample": [
+      [2, "demo-a", "1", "Map", "Reviewed"],
+      [3, "demo-b", "2", "Current", "server default"]
+    ],
+    "issues": [],
+    "insert_attempts": 2,
+    "created": [
+      ["DEMO-A", 1, "Map", "Reviewed", true],
+      ["DEMO-B", 2, "Current", "server default", true]
+    ]
+  }
+}
