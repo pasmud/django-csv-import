@@ -1,0 +1,19 @@
+{
+  "title": "Revalidate a formerly free composite key after preview",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\ndemo-b,02, Lamp ",
+  "before_apply": [{"sku": "DEMO-OTHER", "quantity": 2, "label": "Lamp"}],
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map"],
+      [3, "demo-b", "02", " Lamp "]
+    ],
+    "issues": [],
+    "apply_issues": [
+      [3, null, "unique_together"]
+    ],
+    "insert_attempts": 0,
+    "created": []
+  }
+}
