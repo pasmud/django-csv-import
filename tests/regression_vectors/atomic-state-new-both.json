@@ -1,0 +1,20 @@
+{
+  "title": "Report two new database conflicts affecting different records",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\ndemo-b,2,Lamp",
+  "before_apply": [{"sku": "DEMO-A", "quantity": 2, "label": "Lamp"}],
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map"],
+      [3, "demo-b", "2", "Lamp"]
+    ],
+    "issues": [],
+    "apply_issues": [
+      [2, "SKU", "unique"],
+      [3, null, "unique_together"]
+    ],
+    "insert_attempts": 0,
+    "created": []
+  }
+}
