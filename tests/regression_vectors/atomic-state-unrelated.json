@@ -1,0 +1,19 @@
+{
+  "title": "Apply after preview when new database state does not conflict",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\ndemo-b,2,Lamp",
+  "before_apply": [{"sku": "DEMO-Z", "quantity": 2, "label": "Map"}],
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map"],
+      [3, "demo-b", "2", "Lamp"]
+    ],
+    "issues": [],
+    "insert_attempts": 2,
+    "created": [
+      ["DEMO-A", 1, "Map", "server default", true],
+      ["DEMO-B", 2, "Lamp", "server default", true]
+    ]
+  }
+}
