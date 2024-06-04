@@ -1,0 +1,14 @@
+{
+  "title": "Report blank and missing when Name is empty",
+  "csv": "SKU,Quantity,\"\"\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "blank_header"],
+      [1, "Name", "missing_header"]
+    ],
+    "created": []
+  }
+}
