@@ -1,0 +1,16 @@
+{
+  "title": "Report a single blank issue for several empty headers",
+  "csv": ",,\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "blank_header"],
+      [1, "SKU", "missing_header"],
+      [1, "Quantity", "missing_header"],
+      [1, "Name", "missing_header"]
+    ],
+    "created": []
+  }
+}
