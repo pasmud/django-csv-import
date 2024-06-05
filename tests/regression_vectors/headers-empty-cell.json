@@ -1,0 +1,13 @@
+{
+  "title": "Report a trailing empty header cell",
+  "csv": "SKU,Quantity,Name,\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "blank_header"]
+    ],
+    "created": []
+  }
+}
