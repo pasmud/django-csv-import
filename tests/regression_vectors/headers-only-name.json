@@ -1,0 +1,14 @@
+{
+  "title": "Require SKU and Quantity when only Name is present",
+  "csv": "Name\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, "SKU", "missing_header"],
+      [1, "Quantity", "missing_header"]
+    ],
+    "created": []
+  }
+}
