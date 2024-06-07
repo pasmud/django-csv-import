@@ -1,0 +1,16 @@
+{
+  "title": "Reject a header with no configured names",
+  "csv": "Code,Count,Label\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "unknown_header", "CSV contains unexpected headers."],
+      [1, "SKU", "missing_header"],
+      [1, "Quantity", "missing_header"],
+      [1, "Name", "missing_header"]
+    ],
+    "created": []
+  }
+}
