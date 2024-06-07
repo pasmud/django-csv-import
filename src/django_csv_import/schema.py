@@ -77,11 +77,16 @@ class ImportSchema:
     def _header_issues(self, header: Record) -> tuple[Issue, ...]:
         counts = Counter(header.cells)
         issues = []
-        if any(count > 1 for count in counts.values()):
+        unexpected = [cell for cell in counts if cell not in self.columns and cell.strip()]
+        if any(not cell.strip() for cell in counts):
+            issues.append(Issue("blank_header", "CSV contains a blank header.", header.line))
+        if any(counts[cell] > 1 for cell in unexpected):
             issues.append(Issue("duplicate_header", "CSV headers must be unique.", header.line))
-        if counts.keys() - self.columns.keys():
+        if unexpected:
             issues.append(Issue("unknown_header", "CSV contains unexpected headers.", header.line))
         for column in self.columns:
-            if column not in counts:
+            if counts[column] > 1:
+                issues.append(Issue("duplicate_header", "Header appears more than once.", header.line, column))
+            elif not counts[column]:
                 issues.append(Issue("missing_header", "Required header is absent.", header.line, column))
         return tuple(issues)

@@ -41,3 +41,18 @@ def test_unlisted_headers_are_refused_before_any_row_can_bind():
     result = validate(BytesIO(b"SKU,Quantity,Name,internal_note\nDEMO-A,1,Map,new\n"), ITEM_SCHEMA)
     assert not result.rows
     assert [issue.code for issue in result.issues] == ["unknown_header"]
+
+
+def test_blank_and_repeated_headers_report_the_physical_header_line():
+    result = validate(BytesIO(
+        b'\r\nSKU,SKU," \t",Quantity,private,private\r\nDEMO-A,DEMO-B,,1,a,b\r\n',
+    ), ITEM_SCHEMA)
+    assert result.row_count == 1 and not result.rows
+    assert [(issue.code, issue.line, issue.column) for issue in result.issues] == [
+        ("blank_header", 2, None),
+        ("duplicate_header", 2, None),
+        ("unknown_header", 2, None),
+        ("duplicate_header", 2, "SKU"),
+        ("missing_header", 2, "Name"),
+    ]
+    assert all("private" not in issue.message for issue in result.issues)

@@ -21,7 +21,7 @@ def test_missing_unknown_and_duplicate_headers_are_reported_without_using_upload
     schema = ImportSchema(ItemForm, {"SKU": "sku", "Quantity": "quantity", "Name": "label"})
     issues = schema._header_issues(Record(2, ("SKU", "SKU", "internal_note", "Quantity")))
     assert {(i.code, i.line, i.column) for i in issues} == {
-        ("duplicate_header", 2, None), ("unknown_header", 2, None), ("missing_header", 2, "Name"),
+        ("duplicate_header", 2, "SKU"), ("unknown_header", 2, None), ("missing_header", 2, "Name"),
     }
 
 
