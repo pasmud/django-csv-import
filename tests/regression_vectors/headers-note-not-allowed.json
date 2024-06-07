@@ -1,0 +1,13 @@
+{
+  "title": "Reject an unmapped model field as a CSV header",
+  "csv": "SKU,Quantity,Name,internal_note\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "unknown_header", "CSV contains unexpected headers."]
+    ],
+    "created": []
+  }
+}
