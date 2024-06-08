@@ -1,0 +1,14 @@
+{
+  "title": "Require both other headers when only SKU is present",
+  "csv": "SKU\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, "Quantity", "missing_header"],
+      [1, "Name", "missing_header"]
+    ],
+    "created": []
+  }
+}
