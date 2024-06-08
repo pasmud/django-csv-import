@@ -1,0 +1,15 @@
+{
+  "title": "Bind by header in Quantity Name SKU order",
+  "csv": "Quantity,Name,SKU\n1,Map,demo-a",
+  "expect": {
+    "row_count": 1,
+    "headers": ["Quantity", "Name", "SKU"],
+    "sample": [
+      [2, "1", "Map", "demo-a"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "server default", true]
+    ]
+  }
+}
