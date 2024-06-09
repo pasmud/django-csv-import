@@ -1,0 +1,13 @@
+{
+  "title": "Treat a quoted tab header as blank",
+  "csv": "SKU,Quantity,\"\t\",Name\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "blank_header"]
+    ],
+    "created": []
+  }
+}
