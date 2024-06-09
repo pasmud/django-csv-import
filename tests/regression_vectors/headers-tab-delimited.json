@@ -1,0 +1,16 @@
+{
+  "title": "Do not infer a tab delimiter",
+  "csv": "SKU\tQuantity\tName\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "unknown_header", "CSV contains unexpected headers."],
+      [1, "SKU", "missing_header"],
+      [1, "Quantity", "missing_header"],
+      [1, "Name", "missing_header"]
+    ],
+    "created": []
+  }
+}
