@@ -1,0 +1,13 @@
+{
+  "title": "Reject repeated SKU header",
+  "csv": "SKU,Quantity,Name,SKU\ndemo-a,1,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, "SKU", "duplicate_header"]
+    ],
+    "created": []
+  }
+}
