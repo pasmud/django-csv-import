@@ -1,0 +1,14 @@
+{
+  "title": "Reject case-changed SKU header",
+  "csv": "Quantity,Name,sku\ndemo-a,1,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "unknown_header"],
+      [1, "SKU", "missing_header"]
+    ],
+    "created": []
+  }
+}
