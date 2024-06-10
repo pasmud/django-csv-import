@@ -1,0 +1,14 @@
+{
+  "title": "Locate a multiline unknown header at its start",
+  "csv": "\r\nSKU,Quantity,\"Long\r\nName\"\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [2, null, "unknown_header", "CSV contains unexpected headers."],
+      [2, "Name", "missing_header"]
+    ],
+    "created": []
+  }
+}
