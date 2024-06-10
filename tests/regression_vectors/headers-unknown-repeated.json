@@ -1,0 +1,14 @@
+{
+  "title": "Redact a repeated unknown header",
+  "csv": "SKU,Quantity,Name,Alias,Alias\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "duplicate_header"],
+      [1, null, "unknown_header", "CSV contains unexpected headers."]
+    ],
+    "created": []
+  }
+}
