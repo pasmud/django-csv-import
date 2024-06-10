@@ -1,0 +1,15 @@
+{
+  "title": "Report repeated configured names in schema order",
+  "csv": "Name,Name,SKU,SKU\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, "SKU", "duplicate_header"],
+      [1, "Quantity", "missing_header"],
+      [1, "Name", "duplicate_header"]
+    ],
+    "created": []
+  }
+}
