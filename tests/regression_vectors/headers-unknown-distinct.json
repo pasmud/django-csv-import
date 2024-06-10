@@ -1,0 +1,13 @@
+{
+  "title": "Group distinct unexpected headers into one issue",
+  "csv": "SKU,Quantity,Name,Alias,Tag\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "unknown_header", "CSV contains unexpected headers."]
+    ],
+    "created": []
+  }
+}
