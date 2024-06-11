@@ -1,0 +1,13 @@
+{
+  "title": "Reject label with 41 characters",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "Name", "max_length"]
+    ],
+    "created": []
+  }
+}
