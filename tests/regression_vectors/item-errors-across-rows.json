@@ -1,0 +1,19 @@
+{
+  "title": "Preserve field issue order and physical lines across rows",
+  "csv": "SKU,Quantity,Name\nbad,word,\n\ndemo-ok,2,\"Trail\nMap\"\ndemo-z,501,Reserved",
+  "expect": {
+    "row_count": 3,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [4, "demo-ok", "2", "Trail\nMap"]
+    ],
+    "issues": [
+      [2, "SKU", "sku_prefix"],
+      [2, "Quantity", "invalid"],
+      [2, "Name", "required"],
+      [6, null, "reserved_name"],
+      [6, null, "invalid"]
+    ],
+    "created": []
+  }
+}
