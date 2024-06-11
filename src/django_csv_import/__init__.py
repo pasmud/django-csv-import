@@ -2,5 +2,6 @@
 
 from .csv_input import Limits
 from .issues import Issue
+from .schema import ImportSchema
 
-__all__ = ["Issue", "Limits"]
+__all__ = ["ImportSchema", "Issue", "Limits"]
