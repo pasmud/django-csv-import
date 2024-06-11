@@ -1,0 +1,15 @@
+{
+  "title": "Attach form errors to headers despite reordered input",
+  "csv": "Name,SKU,Quantity\n\"\n\",bad,wrong",
+  "expect": {
+    "row_count": 1,
+    "headers": ["Name", "SKU", "Quantity"],
+    "sample": [],
+    "issues": [
+      [2, "SKU", "sku_prefix"],
+      [2, "Quantity", "invalid"],
+      [2, "Name", "required"]
+    ],
+    "created": []
+  }
+}
