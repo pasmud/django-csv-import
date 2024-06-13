@@ -1,0 +1,15 @@
+{
+  "title": "Accept a label containing but not equal to Reserved",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Reserved map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Reserved map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Reserved map", "server default", true]
+    ]
+  }
+}
