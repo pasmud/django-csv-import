@@ -1,0 +1,13 @@
+{
+  "title": "Reject the reserved name after case folding and trim",
+  "csv": "SKU,Quantity,Name\ndemo-a,1, reSERVed ",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, null, "reserved_name"]
+    ],
+    "created": []
+  }
+}
