@@ -1,0 +1,15 @@
+{
+  "title": "Accept 40 multibyte characters in the model label",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界", "server default", true]
+    ]
+  }
+}
