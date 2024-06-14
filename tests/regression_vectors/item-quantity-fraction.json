@@ -1,0 +1,13 @@
+{
+  "title": "Reject a fractional quantity",
+  "csv": "SKU,Quantity,Name\ndemo-a,1.25,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "Quantity", "invalid"]
+    ],
+    "created": []
+  }
+}
