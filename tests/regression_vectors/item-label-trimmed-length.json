@@ -1,0 +1,15 @@
+{
+  "title": "Accept label whose padding is trimmed before length check",
+  "csv": "SKU,Quantity,Name\ndemo-a,1, MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", " MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM", "server default", true]
+    ]
+  }
+}
