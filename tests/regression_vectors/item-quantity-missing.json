@@ -1,0 +1,13 @@
+{
+  "title": "Reject a missing quantity",
+  "csv": "SKU,Quantity,Name\ndemo-a,,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "Quantity", "required"]
+    ],
+    "created": []
+  }
+}
