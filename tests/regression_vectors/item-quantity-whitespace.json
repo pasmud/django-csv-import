@@ -1,0 +1,15 @@
+{
+  "title": "Accept quantity padded with whitespace",
+  "csv": "SKU,Quantity,Name\ndemo-a, 7\t,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", " 7\t", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 7, "Map", "server default", true]
+    ]
+  }
+}
