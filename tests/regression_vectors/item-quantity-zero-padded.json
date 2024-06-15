@@ -1,0 +1,15 @@
+{
+  "title": "Accept zero-padded quantity",
+  "csv": "SKU,Quantity,Name\ndemo-a,0042,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "0042", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 42, "Map", "server default", true]
+    ]
+  }
+}
