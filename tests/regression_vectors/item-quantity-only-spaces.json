@@ -1,0 +1,13 @@
+{
+  "title": "Reject a whitespace-only quantity",
+  "csv": "SKU,Quantity,Name\ndemo-a, \t,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "Quantity", "invalid"]
+    ],
+    "created": []
+  }
+}
