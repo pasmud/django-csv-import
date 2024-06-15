@@ -1,0 +1,15 @@
+{
+  "title": "Accept an integer with trailing decimal zeros",
+  "csv": "SKU,Quantity,Name\ndemo-a,3.00,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "3.00", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 3, "Map", "server default", true]
+    ]
+  }
+}
