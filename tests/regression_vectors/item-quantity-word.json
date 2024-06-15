@@ -1,0 +1,13 @@
+{
+  "title": "Reject a textual quantity",
+  "csv": "SKU,Quantity,Name\ndemo-a,one,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "Quantity", "invalid"]
+    ],
+    "created": []
+  }
+}
