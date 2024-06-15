@@ -1,0 +1,15 @@
+{
+  "title": "Accept Unicode decimal digits as a quantity",
+  "csv": "SKU,Quantity,Name\ndemo-a,１２,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "１２", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 12, "Map", "server default", true]
+    ]
+  }
+}
