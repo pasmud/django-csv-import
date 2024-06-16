@@ -1,0 +1,13 @@
+{
+  "title": "Reject SKU with a different prefix",
+  "csv": "SKU,Quantity,Name\nSAMPLE-MAP,1,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "SKU", "sku_prefix"]
+    ],
+    "created": []
+  }
+}
