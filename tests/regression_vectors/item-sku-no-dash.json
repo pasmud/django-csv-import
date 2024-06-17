@@ -1,0 +1,13 @@
+{
+  "title": "Reject SKU without the prefix separator",
+  "csv": "SKU,Quantity,Name\nDEMOMAP,1,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "SKU", "sku_prefix"]
+    ],
+    "created": []
+  }
+}
