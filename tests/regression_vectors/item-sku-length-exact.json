@@ -1,0 +1,15 @@
+{
+  "title": "Clean SKU at maximum length",
+  "csv": "SKU,Quantity,Name\ndemo-1234567,1,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-1234567", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-1234567", 1, "Map", "server default", true]
+    ]
+  }
+}
