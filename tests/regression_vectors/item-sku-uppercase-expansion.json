@@ -1,0 +1,13 @@
+{
+  "title": "Reject SKU expanded beyond field length by uppercasing",
+  "csv": "SKU,Quantity,Name\ndemo-123456ß,1,Map",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "SKU", "max_length"]
+    ],
+    "created": []
+  }
+}
