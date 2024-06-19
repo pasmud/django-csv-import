@@ -1,0 +1,16 @@
+{
+  "title": "Allow exactly the byte cap with ASCII without a final newline",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map",
+  "limits": {"max_bytes": 30},
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "server default", true]
+    ]
+  }
+}
