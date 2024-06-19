@@ -39,3 +39,23 @@ def test_input_failures(raw, code, line):
     with pytest.raises(InputError) as caught:
         read_csv(BytesIO(raw), Limits(max_rows=1))
     assert (caught.value.issue.code, caught.value.issue.line) == (code, line)
+
+
+def test_cell_limit_counts_decoded_characters_after_csv_unquoting():
+    raw = 'A,B\r\n"é""\r\n界",ok\r\n'.encode()
+    assert read_csv(BytesIO(raw), Limits(max_cell_chars=5)).rows == (Record(2, ('é"\r\n界', "ok")),)
+    with pytest.raises(InputError) as caught:
+        read_csv(BytesIO(raw), Limits(max_cell_chars=4))
+    assert (caught.value.issue.code, caught.value.issue.line) == ("cell_too_long", 2)
+
+
+def test_cell_limit_applies_to_headers():
+    with pytest.raises(InputError, match="Cell 2 exceeds 4 characters") as caught:
+        read_csv(BytesIO(b"\nA,Longer\n1,2\n"), Limits(max_cell_chars=4))
+    assert (caught.value.issue.code, caught.value.issue.line) == ("cell_too_long", 2)
+
+
+@pytest.mark.parametrize("value", [0, True, 2.5])
+def test_cell_limit_requires_a_positive_integer(value):
+    with pytest.raises(ValueError, match="max_cell_chars"):
+        Limits(max_cell_chars=value)

@@ -8,15 +8,18 @@ from .issues import Issue
 
 @dataclass(frozen=True, slots=True)
 class Limits:
-    """Maximum upload bytes (including any BOM) and nonblank data records."""
+    """Maximum upload bytes, data records, and optionally decoded cell characters."""
 
     max_bytes: int = 1024 * 1024
     max_rows: int = 1000
+    max_cell_chars: int | None = None
 
     def __post_init__(self) -> None:
         for value in (self.max_bytes, self.max_rows):
             if type(value) is not int or value < 1:
                 raise ValueError("CSV limits must be positive integers.")
+        if self.max_cell_chars is not None and (type(self.max_cell_chars) is not int or self.max_cell_chars < 1):
+            raise ValueError("max_cell_chars must be a positive integer or None.")
 
 
 @dataclass(frozen=True, slots=True)
@@ -68,10 +71,16 @@ def read_csv(source: BinaryIO, limits: Limits) -> Table:
 
         if not cells:
             continue
+        if header is not None and len(rows) == limits.max_rows:
+            raise InputError(Issue("too_many_rows", f"CSV exceeds the data row limit ({limits.max_rows}).", line))
+        if (max_chars := limits.max_cell_chars) is not None:
+            for position, cell in enumerate(cells, start=1):
+                if len(cell) > max_chars:
+                    raise InputError(Issue(
+                        "cell_too_long", f"Cell {position} exceeds {max_chars} characters.", line,
+                    ))
         if header is None:
             header = Record(line, tuple(cells))
-        elif len(rows) == limits.max_rows:
-            raise InputError(Issue("too_many_rows", f"CSV exceeds the data row limit ({limits.max_rows}).", line))
         else:
             rows.append(Record(line, tuple(cells)))
 

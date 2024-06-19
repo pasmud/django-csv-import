@@ -105,3 +105,14 @@ def test_preview_escapes_csv_text_and_rejects_unknown_action():
     invalid = post_csv(client, "unknown", raw)
     assert invalid.status_code == 200 and b"Select a valid choice." in invalid.content
     assert not Item.objects.exists()
+
+
+def test_admin_displays_cell_limit_and_rejects_apply_atomically(monkeypatch):
+    schema = ImportSchema(ItemForm, ITEM_COLUMNS, Limits(max_cell_chars=8))
+    monkeypatch.setattr(admin.site.get_model_admin(Item), "csv_import_schema", schema)
+    client = staff_client("add_item")
+    response = post_csv(client, "apply", VALID + b"DEMO-B,2,Long name\n")
+    assert response.status_code == 200
+    assert b"may contain up to 8 characters" in response.content
+    assert b"Line 3: Cell 3 exceeds 8 characters." in response.content
+    assert not Item.objects.exists()
