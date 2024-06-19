@@ -1,0 +1,14 @@
+{
+  "title": "Count a two-byte accent toward byte overflow",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Café",
+  "limits": {"max_bytes": 31},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "too_large"]
+    ],
+    "created": []
+  }
+}
