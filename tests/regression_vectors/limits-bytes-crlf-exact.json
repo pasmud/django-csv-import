@@ -1,0 +1,16 @@
+{
+  "title": "Allow exactly the byte cap with a CRLF upload",
+  "csv": "SKU,Quantity,Name\r\ndemo-a,1,Map\r\n",
+  "limits": {"max_bytes": 33},
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "server default", true]
+    ]
+  }
+}
