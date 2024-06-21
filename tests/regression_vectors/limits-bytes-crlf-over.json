@@ -1,0 +1,14 @@
+{
+  "title": "Count a CRLF upload toward byte overflow",
+  "csv": "SKU,Quantity,Name\r\ndemo-a,1,Map\r\n",
+  "limits": {"max_bytes": 32},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "too_large"]
+    ],
+    "created": []
+  }
+}
