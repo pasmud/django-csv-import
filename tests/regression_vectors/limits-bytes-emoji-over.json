@@ -1,0 +1,14 @@
+{
+  "title": "Count a four-byte emoji toward byte overflow",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,🧭",
+  "limits": {"max_bytes": 30},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "too_large"]
+    ],
+    "created": []
+  }
+}
