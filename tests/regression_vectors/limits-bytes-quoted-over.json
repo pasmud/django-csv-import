@@ -1,0 +1,14 @@
+{
+  "title": "Count CSV quote escapes toward byte overflow",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"\"\"Map\"\"\"",
+  "limits": {"max_bytes": 35},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "too_large"]
+    ],
+    "created": []
+  }
+}
