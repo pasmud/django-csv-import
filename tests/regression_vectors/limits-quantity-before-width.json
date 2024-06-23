@@ -1,0 +1,14 @@
+{
+  "title": "Check an oversized cell before testing row width",
+  "csv": "SKU,Quantity,Name\ndemo-a,123456789",
+  "limits": {"max_cell_chars": 8},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [2, null, "cell_too_long", "Cell 2 exceeds 8 characters."]
+    ],
+    "created": []
+  }
+}
