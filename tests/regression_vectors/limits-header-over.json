@@ -1,0 +1,14 @@
+{
+  "title": "Enforce the character cap on the header",
+  "csv": "\nSKU,Quantity,Name\ndemo-a,1,Map",
+  "limits": {"max_cell_chars": 7},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [2, null, "cell_too_long", "Cell 2 exceeds 7 characters."]
+    ],
+    "created": []
+  }
+}
