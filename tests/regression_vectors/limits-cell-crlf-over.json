@@ -1,0 +1,14 @@
+{
+  "title": "Count both characters of embedded CRLF toward cell overflow",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"First\r\nLast\"",
+  "limits": {"max_cell_chars": 10},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [2, null, "cell_too_long", "Cell 3 exceeds 10 characters."]
+    ],
+    "created": []
+  }
+}
