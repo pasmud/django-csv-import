@@ -1,0 +1,14 @@
+{
+  "title": "Count multibyte characters toward cell overflow",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,地図é🧭地図é🧭界",
+  "limits": {"max_cell_chars": 8},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [2, null, "cell_too_long", "Cell 3 exceeds 8 characters."]
+    ],
+    "created": []
+  }
+}
