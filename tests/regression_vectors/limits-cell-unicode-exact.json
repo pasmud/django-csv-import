@@ -1,0 +1,16 @@
+{
+  "title": "Allow the exact character cap with multibyte characters",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,地図é🧭地図é🧭界",
+  "limits": {"max_cell_chars": 9},
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "地図é🧭地図é🧭界"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "地図é🧭地図é🧭界", "server default", true]
+    ]
+  }
+}
