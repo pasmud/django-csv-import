@@ -1,0 +1,16 @@
+{
+  "title": "Allow the exact character cap with a quoted comma",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"Map, fold\"",
+  "limits": {"max_cell_chars": 9},
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map, fold"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map, fold", "server default", true]
+    ]
+  }
+}
