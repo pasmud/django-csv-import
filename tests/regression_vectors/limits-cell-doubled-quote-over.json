@@ -1,0 +1,14 @@
+{
+  "title": "Count one decoded quote toward cell overflow",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"Map \"\"Wide\"\"\"",
+  "limits": {"max_cell_chars": 9},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [2, null, "cell_too_long", "Cell 3 exceeds 9 characters."]
+    ],
+    "created": []
+  }
+}
