@@ -1,0 +1,14 @@
+{
+  "title": "Check oversized headers before testing allowed names",
+  "csv": "SKU,Quantity,\"Unmapped\nHeading\"\ndemo-a,1,Map",
+  "limits": {"max_cell_chars": 8},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "cell_too_long", "Cell 3 exceeds 8 characters."]
+    ],
+    "created": []
+  }
+}
