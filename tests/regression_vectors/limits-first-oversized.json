@@ -1,0 +1,14 @@
+{
+  "title": "Report the leftmost oversized cell in a record",
+  "csv": "SKU,Quantity,Name\nDEMO-LONG,123456789,Long label",
+  "limits": {"max_cell_chars": 8},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [2, null, "cell_too_long", "Cell 1 exceeds 8 characters."]
+    ],
+    "created": []
+  }
+}
