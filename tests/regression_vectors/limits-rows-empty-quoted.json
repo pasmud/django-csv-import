@@ -1,0 +1,14 @@
+{
+  "title": "Count a quoted empty row toward row overflow",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\n\n\"\"",
+  "limits": {"max_rows": 1},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [4, null, "too_many_rows"]
+    ],
+    "created": []
+  }
+}
