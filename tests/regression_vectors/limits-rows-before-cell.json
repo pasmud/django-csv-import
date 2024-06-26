@@ -1,0 +1,14 @@
+{
+  "title": "Report row overflow before scanning excess cells",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\ndemo-b,2,Longer than cap",
+  "limits": {"max_rows": 1, "max_cell_chars": 8},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [3, null, "too_many_rows"]
+    ],
+    "created": []
+  }
+}
