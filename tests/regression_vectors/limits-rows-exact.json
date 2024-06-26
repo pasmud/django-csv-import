@@ -1,0 +1,18 @@
+{
+  "title": "Count only logical rows, not blanks or quoted newlines",
+  "csv": "SKU,Quantity,Name\n\ndemo-a,1,\"Trail\nMap\"\n\ndemo-b,2,Lamp\n\n",
+  "limits": {"max_rows": 2},
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [3, "demo-a", "1", "Trail\nMap"],
+      [6, "demo-b", "2", "Lamp"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Trail\nMap", "server default", true],
+      ["DEMO-B", 2, "Lamp", "server default", true]
+    ]
+  }
+}
