@@ -1,0 +1,14 @@
+{
+  "title": "Locate row overflow after a multiline record",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"Trail\nMap\"\n\ndemo-b,2,Lamp",
+  "limits": {"max_rows": 1},
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [5, null, "too_many_rows"]
+    ],
+    "created": []
+  }
+}
