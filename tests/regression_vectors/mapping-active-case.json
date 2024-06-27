@@ -1,0 +1,14 @@
+{
+  "title": "Reject a capitalized boolean choice not on the allowlist",
+  "csv": "Active,SKU,Quantity,Name\nYes,demo-a,1,Map",
+  "profile": "active",
+  "expect": {
+    "row_count": 1,
+    "headers": ["Active", "SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "Active", "invalid_choice"]
+    ],
+    "created": []
+  }
+}
