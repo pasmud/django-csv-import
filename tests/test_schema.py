@@ -4,13 +4,8 @@ from django.core.exceptions import ImproperlyConfigured
 
 from django_csv_import import ImportSchema
 from django_csv_import.csv_input import Record
+from tests.forms import ItemForm
 from tests.models import Item
-
-
-class ItemForm(forms.ModelForm):
-    class Meta:
-        model = Item
-        fields = ("sku", "quantity", "label")
 
 
 def test_column_mapping_is_copied_and_headers_may_be_reordered():
