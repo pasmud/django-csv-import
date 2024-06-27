@@ -1,0 +1,14 @@
+{
+  "title": "Require a value when the mapped choice is empty",
+  "csv": "Active,SKU,Quantity,Name\n,demo-a,1,Map",
+  "profile": "active",
+  "expect": {
+    "row_count": 1,
+    "headers": ["Active", "SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "Active", "required"]
+    ],
+    "created": []
+  }
+}
