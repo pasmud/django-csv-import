@@ -1,0 +1,14 @@
+{
+  "title": "Do not interpret 1 as a configured boolean choice",
+  "csv": "Active,SKU,Quantity,Name\n1,demo-a,1,Map",
+  "profile": "active",
+  "expect": {
+    "row_count": 1,
+    "headers": ["Active", "SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "Active", "invalid_choice"]
+    ],
+    "created": []
+  }
+}
