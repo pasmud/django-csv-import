@@ -1,0 +1,16 @@
+{
+  "title": "Coerce the configured yes choice to True",
+  "csv": "Active,SKU,Quantity,Name\nyes,demo-a,1,Map",
+  "profile": "active",
+  "expect": {
+    "row_count": 1,
+    "headers": ["Active", "SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "yes", "demo-a", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "server default", true]
+    ]
+  }
+}
