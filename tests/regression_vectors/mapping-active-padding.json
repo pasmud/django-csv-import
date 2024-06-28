@@ -1,0 +1,14 @@
+{
+  "title": "Require exact text for a typed boolean choice",
+  "csv": "Active,SKU,Quantity,Name\n yes ,demo-a,1,Map",
+  "profile": "active",
+  "expect": {
+    "row_count": 1,
+    "headers": ["Active", "SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, "Active", "invalid_choice"]
+    ],
+    "created": []
+  }
+}
