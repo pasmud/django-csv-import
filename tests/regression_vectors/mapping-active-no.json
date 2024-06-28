@@ -1,0 +1,16 @@
+{
+  "title": "Coerce the configured no choice to False",
+  "csv": "Active,SKU,Quantity,Name\nno,demo-a,1,Map",
+  "profile": "active",
+  "expect": {
+    "row_count": 1,
+    "headers": ["Active", "SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "no", "demo-a", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "server default", false]
+    ]
+  }
+}
