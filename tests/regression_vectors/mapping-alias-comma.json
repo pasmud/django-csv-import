@@ -1,0 +1,16 @@
+{
+  "title": "Bind a configured header containing a comma",
+  "csv": "\"Item, code\",Count,Label\ndemo-a,1,Map",
+  "columns": {"Item, code": "sku", "Count": "quantity", "Label": "label"},
+  "expect": {
+    "row_count": 1,
+    "headers": ["Item, code", "Count", "Label"],
+    "sample": [
+      [2, "demo-a", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "server default", true]
+    ]
+  }
+}
