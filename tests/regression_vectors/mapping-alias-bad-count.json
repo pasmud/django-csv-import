@@ -1,0 +1,14 @@
+{
+  "title": "Report invalid input using the configured quantity alias",
+  "csv": "Code,Items,Label\ndemo-a,many,Map",
+  "columns": {"Code": "sku", "Items": "quantity", "Label": "label"},
+  "expect": {
+    "row_count": 1,
+    "headers": ["Code", "Items", "Label"],
+    "sample": [],
+    "issues": [
+      [2, "Items", "invalid"]
+    ],
+    "created": []
+  }
+}
