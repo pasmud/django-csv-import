@@ -1,0 +1,15 @@
+{
+  "title": "Reject an original header once an alias replaces it",
+  "csv": "SKU,Count,Label\ndemo-a,1,Map",
+  "columns": {"Code": "sku", "Count": "quantity", "Label": "label"},
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "unknown_header"],
+      [1, "Code", "missing_header"]
+    ],
+    "created": []
+  }
+}
