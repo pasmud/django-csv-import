@@ -1,0 +1,15 @@
+{
+  "title": "Reject a decomposed spelling of an accented alias",
+  "csv": "Café,Count,Label\ndemo-a,1,Map",
+  "columns": {"Café": "sku", "Count": "quantity", "Label": "label"},
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, null, "unknown_header"],
+      [1, "Café", "missing_header"]
+    ],
+    "created": []
+  }
+}
