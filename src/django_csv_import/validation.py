@@ -5,6 +5,7 @@ from django import forms
 from django.core.exceptions import NON_FIELD_ERRORS
 
 from .csv_input import InputError, Record, read_csv
+from .duplicates import DuplicateCheck
 from .issues import Issue
 from .schema import ImportSchema
 
@@ -40,6 +41,7 @@ def validate(source: BinaryIO, schema: ImportSchema) -> Validation:
     fields = tuple(schema.columns[header] for header in headers)
     header_by_field = dict(zip(fields, headers, strict=True))
     rows = []
+    duplicates = DuplicateCheck(schema)
     for record in table.rows:
         if len(record.cells) != len(fields):
             issues.append(Issue(
@@ -48,7 +50,11 @@ def validate(source: BinaryIO, schema: ImportSchema) -> Validation:
             continue
         form = schema.form_class(data=dict(zip(fields, record.cells, strict=True)))
         if form.is_valid():
-            rows.append(ValidatedRow(record, form))
+            duplicate_issues = duplicates.issues(form.instance, record.line)
+            if duplicate_issues:
+                issues.extend(duplicate_issues)
+            else:
+                rows.append(ValidatedRow(record, form))
             continue
         for field, errors in form.errors.as_data().items():
             column = None if field == NON_FIELD_ERRORS else header_by_field.get(field)

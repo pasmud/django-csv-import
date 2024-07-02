@@ -15,6 +15,7 @@ class Item(models.Model):
 
     class Meta:
         constraints = [
+            models.UniqueConstraint(fields=("label", "quantity"), name="test_item_label_quantity"),
             models.CheckConstraint(
                 condition=models.Q(quantity__lte=500),
                 name="test_item_quantity_limit",
