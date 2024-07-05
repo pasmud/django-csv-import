@@ -1,0 +1,16 @@
+{
+  "title": "Bind an alias with configured surrounding spaces",
+  "csv": "  Code  ,Count,Label\ndemo-a,1,Map",
+  "columns": {"  Code  ": "sku", "Count": "quantity", "Label": "label"},
+  "expect": {
+    "row_count": 1,
+    "headers": ["  Code  ", "Count", "Label"],
+    "sample": [
+      [2, "demo-a", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "server default", true]
+    ]
+  }
+}
