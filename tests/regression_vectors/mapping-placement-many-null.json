@@ -1,0 +1,18 @@
+{
+  "title": "Allow multiple NULL slots for the same default parent",
+  "csv": "Slot\n\"\"\n\n\"\"",
+  "profile": "placement",
+  "expect": {
+    "row_count": 2,
+    "headers": ["Slot"],
+    "sample": [
+      [2, ""],
+      [4, ""]
+    ],
+    "issues": [],
+    "created": [
+      [1001, null],
+      [1001, null]
+    ]
+  }
+}
