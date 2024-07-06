@@ -1,0 +1,14 @@
+{
+  "title": "A mapped note header cannot be left out of the CSV",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map",
+  "profile": "note",
+  "expect": {
+    "row_count": 1,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [1, "Note", "missing_header"]
+    ],
+    "created": []
+  }
+}
