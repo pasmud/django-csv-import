@@ -1,0 +1,16 @@
+{
+  "title": "Save multiline note text through the optional mapping",
+  "csv": "SKU,Quantity,Name,Note\ndemo-a,1,Map,\"One\r\nTwo\"",
+  "profile": "note",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name", "Note"],
+    "sample": [
+      [2, "demo-a", "1", "Map", "One\r\nTwo"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "One\r\nTwo", true]
+    ]
+  }
+}
