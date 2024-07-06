@@ -1,0 +1,14 @@
+{
+  "title": "Report note character overflow at its mapped header",
+  "csv": "SKU,Quantity,Name,Note\ndemo-a,1,Map,界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界",
+  "profile": "note",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name", "Note"],
+    "sample": [],
+    "issues": [
+      [2, "Note", "max_length"]
+    ],
+    "created": []
+  }
+}
