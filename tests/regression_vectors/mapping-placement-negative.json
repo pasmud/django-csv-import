@@ -1,0 +1,16 @@
+{
+  "title": "Validate a nonempty optional integer against its minimum",
+  "csv": "Slot\n\"\"\n-1",
+  "profile": "placement",
+  "expect": {
+    "row_count": 2,
+    "headers": ["Slot"],
+    "sample": [
+      [2, ""]
+    ],
+    "issues": [
+      [3, "Slot", "min_value"]
+    ],
+    "created": []
+  }
+}
