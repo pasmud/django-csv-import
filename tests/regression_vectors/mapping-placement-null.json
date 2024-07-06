@@ -1,0 +1,16 @@
+{
+  "title": "Save a quoted empty optional integer as NULL",
+  "csv": "Slot\n\"\"",
+  "profile": "placement",
+  "expect": {
+    "row_count": 1,
+    "headers": ["Slot"],
+    "sample": [
+      [2, ""]
+    ],
+    "issues": [],
+    "created": [
+      [1001, null]
+    ]
+  }
+}
