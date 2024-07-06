@@ -1,0 +1,16 @@
+{
+  "title": "Save a mapped note at its model field length limit",
+  "csv": "SKU,Quantity,Name,Note\ndemo-a,1,Map,NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN",
+  "profile": "note",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name", "Note"],
+    "sample": [
+      [2, "demo-a", "1", "Map", "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN", true]
+    ]
+  }
+}
