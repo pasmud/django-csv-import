@@ -1,0 +1,14 @@
+{
+  "title": "Require an explicitly mapped note when its cell is empty",
+  "csv": "SKU,Quantity,Name,Note\ndemo-a,1,Map,",
+  "profile": "note",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name", "Note"],
+    "sample": [],
+    "issues": [
+      [2, "Note", "required"]
+    ],
+    "created": []
+  }
+}
