@@ -1,0 +1,14 @@
+{
+  "title": "Reject spaces as a nonempty optional integer",
+  "csv": "Slot\n \t",
+  "profile": "placement",
+  "expect": {
+    "row_count": 1,
+    "headers": ["Slot"],
+    "sample": [],
+    "issues": [
+      [2, "Slot", "invalid"]
+    ],
+    "created": []
+  }
+}
