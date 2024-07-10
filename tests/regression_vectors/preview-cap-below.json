@@ -1,0 +1,31 @@
+{
+  "title": "Return the ordered sample below the ten-row preview cap",
+  "csv": "SKU,Quantity,Name\ndemo-1,1,Map\ndemo-2,2,Map\ndemo-3,3,Map\ndemo-4,4,Map\ndemo-5,5,Map\ndemo-6,6,Map\ndemo-7,7,Map\ndemo-8,8,Map\ndemo-9,9,Map",
+  "expect": {
+    "row_count": 9,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-1", "1", "Map"],
+      [3, "demo-2", "2", "Map"],
+      [4, "demo-3", "3", "Map"],
+      [5, "demo-4", "4", "Map"],
+      [6, "demo-5", "5", "Map"],
+      [7, "demo-6", "6", "Map"],
+      [8, "demo-7", "7", "Map"],
+      [9, "demo-8", "8", "Map"],
+      [10, "demo-9", "9", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-1", 1, "Map", "server default", true],
+      ["DEMO-2", 2, "Map", "server default", true],
+      ["DEMO-3", 3, "Map", "server default", true],
+      ["DEMO-4", 4, "Map", "server default", true],
+      ["DEMO-5", 5, "Map", "server default", true],
+      ["DEMO-6", 6, "Map", "server default", true],
+      ["DEMO-7", 7, "Map", "server default", true],
+      ["DEMO-8", 8, "Map", "server default", true],
+      ["DEMO-9", 9, "Map", "server default", true]
+    ]
+  }
+}
