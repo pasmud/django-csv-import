@@ -21,4 +21,8 @@ class Item(models.Model):
                 name="test_item_quantity_limit",
                 violation_error_message="Quantity must not exceed 500.",
             ),
+            models.CheckConstraint(
+                condition=~models.Q(label="Archive", internal_note="server default"),
+                name="test_archive_requires_note",
+            ),
         ]
