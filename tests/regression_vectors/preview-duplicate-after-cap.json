@@ -1,0 +1,25 @@
+{
+  "title": "Check duplicates that both fall outside the preview sample",
+  "csv": "SKU,Quantity,Name\ndemo-1,1,Map\ndemo-2,2,Map\ndemo-3,3,Map\ndemo-4,4,Map\ndemo-5,5,Map\ndemo-6,6,Map\ndemo-7,7,Map\ndemo-8,8,Map\ndemo-9,9,Map\ndemo-10,10,Map\ndemo-11,11,Map\ndemo-12,12,Map\nDEMO-11,0,Lamp",
+  "expect": {
+    "row_count": 13,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-1", "1", "Map"],
+      [3, "demo-2", "2", "Map"],
+      [4, "demo-3", "3", "Map"],
+      [5, "demo-4", "4", "Map"],
+      [6, "demo-5", "5", "Map"],
+      [7, "demo-6", "6", "Map"],
+      [8, "demo-7", "7", "Map"],
+      [9, "demo-8", "8", "Map"],
+      [10, "demo-9", "9", "Map"],
+      [11, "demo-10", "10", "Map"]
+    ],
+    "issues": [
+      [14, "SKU", "duplicate_row", "Duplicate value for SKU; first seen on line 12."]
+    ],
+    "insert_attempts": 0,
+    "created": []
+  }
+}
