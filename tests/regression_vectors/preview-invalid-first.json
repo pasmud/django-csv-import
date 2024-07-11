@@ -1,0 +1,24 @@
+{
+  "title": "Fill the sample with valid rows after an invalid first row",
+  "csv": "SKU,Quantity,Name\nbad,1,Lamp\ndemo-1,1,Map\ndemo-2,2,Map\ndemo-3,3,Map\ndemo-4,4,Map\ndemo-5,5,Map\ndemo-6,6,Map\ndemo-7,7,Map\ndemo-8,8,Map\ndemo-9,9,Map\ndemo-10,10,Map",
+  "expect": {
+    "row_count": 11,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [3, "demo-1", "1", "Map"],
+      [4, "demo-2", "2", "Map"],
+      [5, "demo-3", "3", "Map"],
+      [6, "demo-4", "4", "Map"],
+      [7, "demo-5", "5", "Map"],
+      [8, "demo-6", "6", "Map"],
+      [9, "demo-7", "7", "Map"],
+      [10, "demo-8", "8", "Map"],
+      [11, "demo-9", "9", "Map"],
+      [12, "demo-10", "10", "Map"]
+    ],
+    "issues": [
+      [2, "SKU", "sku_prefix"]
+    ],
+    "created": []
+  }
+}
