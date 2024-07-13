@@ -1,0 +1,16 @@
+{
+  "title": "Accept scientific price notation at two places",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-p,425E-2,1,Map",
+  "profile": "product",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [
+      [2, "demo-p", "425E-2", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-P", "4.25", 1, "Map"]
+    ]
+  }
+}
