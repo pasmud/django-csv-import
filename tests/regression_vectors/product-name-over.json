@@ -1,0 +1,14 @@
+{
+  "title": "Reject a product name beyond 100 characters",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-p,4.25,1,界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界",
+  "profile": "product",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [],
+    "issues": [
+      [2, "Product name", "max_length"]
+    ],
+    "created": []
+  }
+}
