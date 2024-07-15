@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.template.response import TemplateResponse
 from django.urls import path, reverse
 from django.utils.decorators import method_decorator
@@ -16,11 +16,17 @@ class UploadForm(forms.Form):
     upload = forms.FileField(label="CSV file")
     mode = forms.ChoiceField(choices=(("preview", "Preview"), ("apply", "Import")))
 
+    def __init__(self, *args, report_enabled=False, **kwargs):
+        super().__init__(*args, **kwargs)
+        if report_enabled:
+            self.fields["mode"].choices += [("report", "Download validation report")]
+
 
 class CSVImportAdminMixin:
     """Add a CSRF-protected, add-permission-only CSV view to a ModelAdmin."""
 
     csv_import_schema: ImportSchema | None = None
+    csv_import_report_enabled = False
     change_list_template = "django_csv_import/change_list.html"
     csv_import_template = "django_csv_import/import.html"
 
@@ -61,14 +67,25 @@ class CSVImportAdminMixin:
         list_url = self._csv_reverse("changelist") if can_list else None
         result = None
         preview = None
-        form = UploadForm()
+        form = UploadForm(report_enabled=self.csv_import_report_enabled)
         if request.method == "POST":
-            form = UploadForm(request.POST, request.FILES)
+            form = UploadForm(request.POST, request.FILES, report_enabled=self.csv_import_report_enabled)
             if form.is_valid():
                 upload = form.cleaned_data["upload"]
+                mode = form.cleaned_data["mode"]
                 if upload.size > schema.limits.max_bytes:
                     form.add_error("upload", f"CSV exceeds {schema.limits.max_bytes} bytes.")
-                elif form.cleaned_data["mode"] == "preview":
+                elif mode == "report":
+                    report = preview_csv(upload, schema)
+                    return JsonResponse({
+                        "ok": report.ok,
+                        "row_count": report.row_count,
+                        "issues": [
+                            {"line": issue.line, "column": issue.column, "code": issue.code}
+                            for issue in report.issues
+                        ],
+                    }, headers={"Content-Disposition": 'attachment; filename="csv-validation-report.json"'})
+                elif mode == "preview":
                     preview = result = preview_csv(upload, schema)
                 else:
                     result = import_csv(upload, schema)
@@ -85,6 +102,7 @@ class CSVImportAdminMixin:
             "form": form,
             "result": result,
             "preview": preview,
+            "report_enabled": self.csv_import_report_enabled,
             "limits": schema.limits,
             "headers": schema.columns.keys(),
             "list_url": list_url,

@@ -24,6 +24,7 @@
     <div class="submit-row">
       <button type="submit" name="mode" value="preview">Preview</button>
       <button type="submit" name="mode" value="apply">Import rows</button>
+      {% if report_enabled %}<button type="submit" name="mode" value="report">Download validation report (JSON)</button>{% endif %}
     </div>
   </form>
 

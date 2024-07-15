@@ -2,6 +2,7 @@ import pytest
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth.models import Permission, User
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client
 from django.urls import reverse
@@ -116,3 +117,45 @@ def test_admin_displays_cell_limit_and_rejects_apply_atomically(monkeypatch):
     assert b"may contain up to 8 characters" in response.content
     assert b"Line 3: Cell 3 exceeds 8 characters." in response.content
     assert not Item.objects.exists()
+
+
+def test_report_mode_is_disabled_by_default():
+    client = staff_client("add_item")
+    url = reverse("admin:tests_item_import_csv")
+    assert b"Download validation report" not in client.get(url).content
+    response = post_csv(client, "report")
+    assert response.status_code == 200 and b"Select a valid choice." in response.content
+    assert not Item.objects.exists()
+
+
+def test_enabled_report_checks_csrf_and_omits_sample_and_validation_messages(monkeypatch):
+    class ReportForm(ItemForm):
+        def clean_label(self):
+            label = self.cleaned_data["label"]
+            if label.startswith("Private"):
+                raise ValidationError(f"Unknown label: {label}", code="unknown_label")
+            return label
+
+    model_admin = admin.site.get_model_admin(Item)
+    monkeypatch.setattr(model_admin, "csv_import_report_enabled", True)
+    monkeypatch.setattr(model_admin, "csv_import_schema", ImportSchema(ReportForm, ITEM_COLUMNS))
+    client = staff_client("add_item", enforce_csrf=True)
+    url = reverse("admin:tests_item_import_csv")
+    assert b"Download validation report" in client.get(url).content
+    raw = VALID + b"DEMO-B,2,Private description\n"
+    assert post_csv(client, "report", raw).status_code == 403
+    response = post_csv(client, "report", raw, HTTP_X_CSRFTOKEN=client.cookies["csrftoken"].value)
+    assert response.status_code == 200
+    assert response.headers["Content-Disposition"] == 'attachment; filename="csv-validation-report.json"'
+    assert "no-store" in response.headers["Cache-Control"]
+    assert response.json() == {
+        "ok": False, "row_count": 2,
+        "issues": [{"line": 3, "column": "Name", "code": "unknown_label"}],
+    }
+    assert b"Private description" not in response.content and b"DEMO-A" not in response.content
+    assert not Item.objects.exists()
+
+
+def test_report_requires_model_add_permission_even_when_enabled(monkeypatch):
+    monkeypatch.setattr(admin.site.get_model_admin(Item), "csv_import_report_enabled", True)
+    assert post_csv(staff_client("view_item"), "report").status_code == 403
