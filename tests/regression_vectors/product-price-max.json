@@ -1,0 +1,16 @@
+{
+  "title": "Accept the price at both decimal digit limits",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-p,999999.99,1,Map",
+  "profile": "product",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [
+      [2, "demo-p", "999999.99", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-P", "999999.99", 1, "Map"]
+    ]
+  }
+}
