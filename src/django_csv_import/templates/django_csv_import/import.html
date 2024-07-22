@@ -1,0 +1,55 @@
+{% extends "admin/base_site.html" %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <a href="{% url 'admin:index' %}">Home</a>
+  {% if list_url %} &rsaquo; <a href="{{ list_url }}">{{ opts.verbose_name_plural|capfirst }}</a>{% endif %}
+  &rsaquo; Import CSV
+</div>
+{% endblock %}
+
+{% block content %}
+  <p>Upload a UTF-8, comma-separated file with these exact headers in any order:</p>
+  <ul>{% for header in headers %}<li><code>{{ header }}</code></li>{% endfor %}</ul>
+  <p>Limits: {{ limits.max_bytes }} bytes and {{ limits.max_rows }} data rows.</p>
+  <p>Preview does not write or reserve rows. To import, select the file again; the new upload is fully revalidated.</p>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {{ form.mode.errors }}
+    <p>{{ form.upload.label_tag }} {{ form.upload }}</p>
+    {{ form.upload.errors }}
+    <div class="submit-row">
+      <button type="submit" name="mode" value="preview">Preview</button>
+      <button type="submit" name="mode" value="apply">Import rows</button>
+    </div>
+  </form>
+
+  {% if result %}
+    {% if result.ok %}
+      <h2>Preview: {{ result.row_count }} row{{ result.row_count|pluralize }} passed validation</h2>
+    {% else %}
+      <h2>No rows saved</h2>
+      <p>{{ result.issues|length }} validation or import issue{{ result.issues|length|pluralize }} (showing up to 100):</p>
+      <ul class="errorlist">
+        {% for issue in result.issues|slice:":100" %}
+          <li>{% if issue.line %}Line {{ issue.line }}{% if issue.column %}, {{ issue.column }}{% endif %}: {% endif %}{{ issue.message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endif %}
+
+  {% if preview.sample %}
+    <h2>Sample of valid input rows</h2>
+    <p>These are raw CSV values, shortened for display. Django may normalize them during validation.</p>
+    <table>
+      <thead><tr><th scope="col">Line</th>{% for header in preview.headers %}<th scope="col">{{ header }}</th>{% endfor %}</tr></thead>
+      <tbody>
+        {% for row in preview.sample %}
+          <tr><th scope="row">{{ row.line }}</th>{% for cell in row.cells %}<td>{{ cell|truncatechars:100 }}</td>{% endfor %}</tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %}
