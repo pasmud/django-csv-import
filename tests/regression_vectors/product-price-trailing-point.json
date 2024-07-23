@@ -1,0 +1,16 @@
+{
+  "title": "Accept a price with a trailing point",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-p,4.,1,Map",
+  "profile": "product",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [
+      [2, "demo-p", "4.", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-P", "4.00", 1, "Map"]
+    ]
+  }
+}
