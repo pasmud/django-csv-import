@@ -1,0 +1,14 @@
+{
+  "title": "Reject price with too many whole digits",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-p,1000000,1,Map",
+  "profile": "product",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [],
+    "issues": [
+      [2, "Unit price", "max_whole_digits"]
+    ],
+    "created": []
+  }
+}
