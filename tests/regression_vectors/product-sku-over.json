@@ -1,0 +1,14 @@
+{
+  "title": "Reject a product SKU beyond 20 characters",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-1234567890123456,4.25,1,Map",
+  "profile": "product",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [],
+    "issues": [
+      [2, "SKU", "max_length"]
+    ],
+    "created": []
+  }
+}
