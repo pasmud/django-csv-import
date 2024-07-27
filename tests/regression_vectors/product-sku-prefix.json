@@ -1,0 +1,14 @@
+{
+  "title": "Reject an incorrect product SKU prefix",
+  "csv": "SKU,Unit price,Stock,Product name\nITEM-MAP,4.25,1,Map",
+  "profile": "product",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [],
+    "issues": [
+      [2, "SKU", "demo_sku"]
+    ],
+    "created": []
+  }
+}
