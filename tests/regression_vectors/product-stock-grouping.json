@@ -1,0 +1,14 @@
+{
+  "title": "Reject stock with a thousands separator",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-p,4.25,\"2,000\",Map",
+  "profile": "product",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [],
+    "issues": [
+      [2, "Stock", "invalid"]
+    ],
+    "created": []
+  }
+}
