@@ -1,0 +1,16 @@
+{
+  "title": "Accept stock at the portable signed integer limit",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-p,4.25,2147483647,Map",
+  "profile": "product",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [
+      [2, "demo-p", "4.25", "2147483647", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-P", "4.25", 2147483647, "Map"]
+    ]
+  }
+}
