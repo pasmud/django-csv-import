@@ -1,0 +1,13 @@
+{
+  "title": "Locate an unclosed header after a leading blank",
+  "csv": "\n\"SKU,Quantity,Name",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [2, null, "csv"]
+    ],
+    "created": []
+  }
+}
