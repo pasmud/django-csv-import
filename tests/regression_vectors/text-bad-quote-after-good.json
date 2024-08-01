@@ -1,0 +1,13 @@
+{
+  "title": "Discard earlier samples when a later quote cannot close",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\n\ndemo-b,2,\"Lantern",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [4, null, "csv"]
+    ],
+    "created": []
+  }
+}
