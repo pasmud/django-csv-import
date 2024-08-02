@@ -1,0 +1,13 @@
+{
+  "title": "Reject an upload containing only physical blank lines",
+  "csv": "\r\n\r\n",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "empty"]
+    ],
+    "created": []
+  }
+}
