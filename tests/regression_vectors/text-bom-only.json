@@ -1,0 +1,13 @@
+{
+  "title": "Treat a standalone BOM as an empty upload",
+  "csv": "﻿",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "empty"]
+    ],
+    "created": []
+  }
+}
