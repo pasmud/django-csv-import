@@ -1,0 +1,15 @@
+{
+  "title": "Preserve a comma in a quoted label",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"Map, folded\"",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map, folded"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map, folded", "server default", true]
+    ]
+  }
+}
