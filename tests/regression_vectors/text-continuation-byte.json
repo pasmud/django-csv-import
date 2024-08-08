@@ -1,0 +1,13 @@
+{
+  "title": "Reject an orphaned UTF-8 continuation byte",
+  "csv_hex": "80 53 4b 55 2c 51 75 61 6e 74 69 74 79 2c 4e 61 6d 65 0a",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "encoding"]
+    ],
+    "created": []
+  }
+}
