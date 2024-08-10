@@ -1,0 +1,13 @@
+{
+  "title": "Reject a header without a data record",
+  "csv": "SKU,Quantity,Name",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "no_rows"]
+    ],
+    "created": []
+  }
+}
