@@ -1,0 +1,13 @@
+{
+  "title": "Do not count trailing newline records after the header",
+  "csv": "SKU,Quantity,Name\n\r\n\n",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "no_rows"]
+    ],
+    "created": []
+  }
+}
