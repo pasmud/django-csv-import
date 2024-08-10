@@ -1,0 +1,13 @@
+{
+  "title": "Reject a truncated UTF-8 code point at EOF",
+  "csv_hex": "53 4b 55 2c 51 75 61 6e 74 69 74 79 2c 4e 61 6d 65 0a 64 65 6d 6f 2d 61 2c 31 2c f0 9f",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "encoding"]
+    ],
+    "created": []
+  }
+}
