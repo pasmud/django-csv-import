@@ -1,0 +1,15 @@
+{
+  "title": "Keep interior tabs after Django trims edges",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\tTrail\tMap\t",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "\tTrail\tMap\t"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Trail\tMap", "server default", true]
+    ]
+  }
+}
