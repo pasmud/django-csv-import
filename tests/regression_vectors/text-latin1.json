@@ -1,0 +1,13 @@
+{
+  "title": "Reject a Latin-1 byte in a label",
+  "csv_hex": "53 4b 55 2c 51 75 61 6e 74 69 74 79 2c 4e 61 6d 65 0a 64 65 6d 6f 2d 61 2c 31 2c 43 61 66 e9",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "encoding"]
+    ],
+    "created": []
+  }
+}
