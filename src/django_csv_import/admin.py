@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
-from django.http import Http404, HttpResponseRedirect, JsonResponse
+from django.http import Http404, HttpRequest, HttpResponseRedirect, JsonResponse
 from django.template.response import TemplateResponse
 from django.urls import path, reverse
 from django.utils.decorators import method_decorator
@@ -30,6 +30,10 @@ class CSVImportAdminMixin:
     change_list_template = "django_csv_import/change_list.html"
     csv_import_template = "django_csv_import/import.html"
 
+    def get_csv_import_schema(self, request: HttpRequest) -> ImportSchema | None:
+        """Select an import schema for this request; None disables imports."""
+        return self.csv_import_schema
+
     def _csv_url_name(self, action):
         return f"{self.opts.app_label}_{self.opts.model_name}_{action}"
 
@@ -48,7 +52,7 @@ class CSVImportAdminMixin:
 
     def changelist_view(self, request, extra_context=None):
         context = dict(extra_context or {})
-        if self.csv_import_schema is not None and self.has_add_permission(request):
+        if self.has_add_permission(request) and self.get_csv_import_schema(request) is not None:
             context["csv_import_url"] = self._csv_reverse("import_csv")
         return super().changelist_view(request, extra_context=context)
 
@@ -56,7 +60,7 @@ class CSVImportAdminMixin:
     def csv_import_view(self, request):
         if not self.has_add_permission(request):
             raise PermissionDenied
-        schema = self.csv_import_schema
+        schema = self.get_csv_import_schema(request)
         if schema is None:
             raise Http404
         if schema.model is not self.model:

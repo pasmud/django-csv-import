@@ -2,12 +2,13 @@ import pytest
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth.models import Permission, User
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ImproperlyConfigured, ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client
 from django.urls import reverse
 
 from django_csv_import import ImportSchema, Limits
+from example.catalog.forms import PRODUCT_IMPORT
 from tests.forms import ITEM_COLUMNS, ItemForm
 from tests.models import Item
 
@@ -159,3 +160,48 @@ def test_enabled_report_checks_csrf_and_omits_sample_and_validation_messages(mon
 def test_report_requires_model_add_permission_even_when_enabled(monkeypatch):
     monkeypatch.setattr(admin.site.get_model_admin(Item), "csv_import_report_enabled", True)
     assert post_csv(staff_client("view_item"), "report").status_code == 403
+
+
+def test_request_schema_controls_headers_and_import_availability(monkeypatch):
+    model_admin = admin.site.get_model_admin(Item)
+    schema = ImportSchema(ItemForm, {"Code": "sku", "Count": "quantity", "Label": "label"})
+
+    def schema_for(request):
+        return schema if request.user.has_perm("tests.change_item") else None
+
+    monkeypatch.setattr(model_admin, "get_csv_import_schema", schema_for)
+    client = staff_client("add_item", "view_item", "change_item")
+    url = reverse("admin:tests_item_import_csv")
+    list_url = reverse("admin:tests_item_changelist")
+    assert url.encode() in client.get(list_url).content
+    assert b"<code>Code</code>" in client.get(url).content
+    assert b"Required header is absent." in post_csv(client, "apply").content
+    raw = b"Code,Count,Label\nDEMO-A,1,Map\n"
+    assert b"1 row passed validation" in post_csv(client, "preview", raw).content
+    assert not Item.objects.exists()
+    assert post_csv(client, "apply", raw).url == list_url
+    assert Item.objects.get().internal_note == "server default"
+
+    User.objects.get(username="demo-staff").user_permissions.remove(
+        Permission.objects.get(content_type__app_label="tests", codename="change_item"),
+    )
+    assert url.encode() not in client.get(list_url).content
+    assert client.get(url).status_code == 404
+    assert post_csv(client, "apply", raw.replace(b"DEMO-A", b"DEMO-B")).status_code == 404
+    assert Item.objects.count() == 1
+
+
+def test_add_permission_is_checked_before_selecting_a_request_schema(monkeypatch):
+    def unexpected_hook(request):
+        pytest.fail("Schema selection ran without add permission")
+
+    monkeypatch.setattr(admin.site.get_model_admin(Item), "get_csv_import_schema", unexpected_hook)
+    client = staff_client("view_item")
+    assert client.get(reverse("admin:tests_item_changelist")).status_code == 200
+    assert post_csv(client, "apply").status_code == 403
+
+
+def test_request_schema_cannot_target_another_model(monkeypatch):
+    monkeypatch.setattr(admin.site.get_model_admin(Item), "get_csv_import_schema", lambda request: PRODUCT_IMPORT)
+    with pytest.raises(ImproperlyConfigured, match="this ModelAdmin's model"):
+        post_csv(staff_client("add_item"), "apply")
