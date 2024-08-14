@@ -26,3 +26,11 @@ class Item(models.Model):
                 name="test_archive_requires_note",
             ),
         ]
+
+
+class Placement(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, default=1001)
+    slot = models.PositiveIntegerField(null=True, blank=True)
+
+    class Meta:
+        unique_together = (("item", "slot"),)

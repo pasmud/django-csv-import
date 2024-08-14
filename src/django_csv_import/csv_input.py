@@ -71,7 +71,7 @@ def read_csv(source: BinaryIO, limits: Limits) -> Table:
         if header is None:
             header = Record(line, tuple(cells))
         elif len(rows) == limits.max_rows:
-            raise InputError(Issue("too_many_rows", f"CSV exceeds {limits.max_rows} data rows.", line))
+            raise InputError(Issue("too_many_rows", f"CSV exceeds the data row limit ({limits.max_rows}).", line))
         else:
             rows.append(Record(line, tuple(cells)))
 
