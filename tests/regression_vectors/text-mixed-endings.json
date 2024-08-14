@@ -1,0 +1,15 @@
+{
+  "title": "Locate rows across CRLF, CR, and LF separators",
+  "csv": "SKU,Quantity,Name\r\n\rdemo-a,1,Map\n\n",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [3, "demo-a", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "server default", true]
+    ]
+  }
+}
