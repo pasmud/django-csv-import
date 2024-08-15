@@ -1,0 +1,13 @@
+{
+  "title": "Report a multiline short record at its start",
+  "csv": "SKU,Quantity,Name\n\n\"Trail\nMap\",5\n",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [3, null, "row_width"]
+    ],
+    "created": []
+  }
+}
