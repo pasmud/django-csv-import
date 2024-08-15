@@ -1,0 +1,13 @@
+{
+  "title": "Report a multiline wide record at its start",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"Trail\nMap\",Extra",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, null, "row_width"]
+    ],
+    "created": []
+  }
+}
