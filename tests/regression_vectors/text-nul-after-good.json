@@ -1,0 +1,13 @@
+{
+  "title": "Reject NUL even after an otherwise valid row",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\n\u0000",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "nul"]
+    ],
+    "created": []
+  }
+}
