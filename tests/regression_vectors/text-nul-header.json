@@ -1,0 +1,13 @@
+{
+  "title": "Reject NUL in a header before binding",
+  "csv": "SK\u0000U,Quantity,Name\ndemo-a,1,Map",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "nul"]
+    ],
+    "created": []
+  }
+}
