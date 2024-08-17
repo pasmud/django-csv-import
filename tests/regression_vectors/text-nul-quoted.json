@@ -1,0 +1,13 @@
+{
+  "title": "Reject NUL inside a quoted field",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"Trail\u0000Map\"",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "nul"]
+    ],
+    "created": []
+  }
+}
