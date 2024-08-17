@@ -1,0 +1,13 @@
+{
+  "title": "Count a quoted empty record instead of skipping it",
+  "csv": "SKU,Quantity,Name\n\n\"\"\n",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [3, null, "row_width"]
+    ],
+    "created": []
+  }
+}
