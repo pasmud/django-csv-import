@@ -1,0 +1,15 @@
+{
+  "title": "Decode a cell containing only a comma",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\",\"",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", ","]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, ",", "server default", true]
+    ]
+  }
+}
