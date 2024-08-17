@@ -1,0 +1,15 @@
+{
+  "title": "Unescape doubled double quotes in a label",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"Map \"\"A\"\"\"",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map \"A\""]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map \"A\"", "server default", true]
+    ]
+  }
+}
