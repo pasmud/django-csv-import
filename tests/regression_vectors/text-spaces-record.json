@@ -1,0 +1,13 @@
+{
+  "title": "Treat a space-only physical row as a record",
+  "csv": "SKU,Quantity,Name\n \t\n",
+  "expect": {
+    "row_count": 1,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [],
+    "issues": [
+      [2, null, "row_width"]
+    ],
+    "created": []
+  }
+}
