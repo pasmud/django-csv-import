@@ -1,0 +1,13 @@
+{
+  "title": "Reject an unclosed quote starting on line two",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"Trail\nMap",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [2, null, "csv"]
+    ],
+    "created": []
+  }
+}
