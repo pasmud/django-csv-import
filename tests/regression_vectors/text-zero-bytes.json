@@ -1,0 +1,13 @@
+{
+  "title": "Reject an upload containing zero bytes",
+  "csv": "",
+  "expect": {
+    "row_count": 0,
+    "headers": [],
+    "sample": [],
+    "issues": [
+      [null, null, "empty"]
+    ],
+    "created": []
+  }
+}
