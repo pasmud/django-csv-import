@@ -1,7 +1,15 @@
+import csv
+
 from django import forms
 from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
-from django.http import Http404, HttpRequest, HttpResponseRedirect, JsonResponse
+from django.http import (
+    Http404,
+    HttpRequest,
+    HttpResponse,
+    HttpResponseRedirect,
+    JsonResponse,
+)
 from django.template.response import TemplateResponse
 from django.urls import path, reverse
 from django.utils.decorators import method_decorator
@@ -65,6 +73,14 @@ class CSVImportAdminMixin:
             raise Http404
         if schema.model is not self.model:
             raise ImproperlyConfigured("The CSV import schema must target this ModelAdmin's model.")
+
+        if request.method == "GET" and request.GET.get("download") == "template":
+            response = HttpResponse(
+                content_type="text/csv; charset=utf-8",
+                headers={"Content-Disposition": 'attachment; filename="import-template.csv"'},
+            )
+            csv.writer(response).writerow(schema.columns)
+            return response
 
         request.current_app = self.admin_site.name
         can_list = self.has_view_or_change_permission(request)

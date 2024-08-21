@@ -11,6 +11,7 @@
 {% block content %}
   <p>Upload a UTF-8, comma-separated file with these exact headers in any order:</p>
   <ul>{% for header in headers %}<li><code>{{ header }}</code></li>{% endfor %}</ul>
+  <p><a href="?download=template">Download CSV template</a> and add at least one data row.</p>
   <p>Limits: {{ limits.max_bytes }} bytes and {{ limits.max_rows }} data rows.</p>
   {% if limits.max_cell_chars %}<p>Each cell, including headers, may contain up to {{ limits.max_cell_chars }} characters.</p>{% endif %}
   <p>Preview does not write or reserve rows. To import, select the file again; the new upload is fully revalidated.</p>

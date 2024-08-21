@@ -51,6 +51,8 @@ class ProductAdmin(CSVImportAdminMixin, admin.ModelAdmin):
 
 The mixin uses the admin site's active-staff gate and CSRF protection, then enforces the model admin's `has_add_permission(request)` for both preview and apply. The link appears on the changelist for users who can add. Add-only staff can open the import URL directly (`import-csv/` under the model's admin URL); they do not gain changelist access. If you override `change_list_template`, extend `django_csv_import/change_list.html` or render the `csv_import_url` context value when present.
 
+On the import page, **Download CSV template** creates a UTF-8 file containing only the configured headers, in schema order. Add at least one data row before uploading it. The template requires the same model add permission as the import page and does not contain existing records.
+
 Override `get_csv_import_schema(self, request)` to select among trusted schemas for the registered model, for example to support a team's CSV headers or apply narrower limits. The default returns `csv_import_schema`. Return `None` to hide the link and make the import view unavailable for that request. The admin checks add permission before calling the hook, and selects the schema again on each upload.
 
 Set `csv_import_report_enabled = True` on the model admin to offer a **Download validation report (JSON)** button. It validates the selected upload without writing, under the same add-permission and CSRF checks as preview. The attachment contains `ok`, `row_count`, and all issue codes with their line and column when available. It omits validation messages and sampled cell values. Use static codes for custom Django validators. Upload form errors (such as a missing or oversized file) still appear on the page.

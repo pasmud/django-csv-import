@@ -205,3 +205,30 @@ def test_request_schema_cannot_target_another_model(monkeypatch):
     monkeypatch.setattr(admin.site.get_model_admin(Item), "get_csv_import_schema", lambda request: PRODUCT_IMPORT)
     with pytest.raises(ImproperlyConfigured, match="this ModelAdmin's model"):
         post_csv(staff_client("add_item"), "apply")
+
+
+def test_admin_template_download_round_trips_with_request_schema(monkeypatch):
+    schema = ImportSchema(ItemForm, {"Stock code": "sku", "Count": "quantity", 'Nom, "étiquette"': "label"})
+    monkeypatch.setattr(admin.site.get_model_admin(Item), "get_csv_import_schema", lambda request: schema)
+    client = staff_client("add_item")
+    url = reverse("admin:tests_item_import_csv")
+    assert b'href="?download=template"' in client.get(url).content
+    response = client.get(url, {"download": "template"})
+    assert response.status_code == 200
+    assert response.headers["Content-Type"] == "text/csv; charset=utf-8"
+    assert response.headers["Content-Disposition"] == 'attachment; filename="import-template.csv"'
+    assert "no-store" in response.headers["Cache-Control"]
+    assert response.content.decode() == 'Stock code,Count,"Nom, ""étiquette"""\r\n'
+    assert b"1 row passed validation" in post_csv(client, "preview", response.content + b"DEMO-A,1,Map\n").content
+    assert not Item.objects.exists()
+
+
+def test_admin_template_download_requires_model_add_permission():
+    url = reverse("admin:tests_item_import_csv")
+    assert staff_client("view_item").get(url, {"download": "template"}).status_code == 403
+
+
+def test_admin_template_download_requires_enabled_schema(monkeypatch):
+    monkeypatch.setattr(admin.site.get_model_admin(Item), "csv_import_schema", None)
+    url = reverse("admin:tests_item_import_csv")
+    assert staff_client("add_item").get(url, {"download": "template"}).status_code == 404
