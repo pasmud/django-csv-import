@@ -1,0 +1,17 @@
+{
+  "title": "Point to different prior rows for the two duplicate keys",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\ndemo-b,2,Lamp\nDEMO-A,2,Lamp",
+  "expect": {
+    "row_count": 3,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map"],
+      [3, "demo-b", "2", "Lamp"]
+    ],
+    "issues": [
+      [4, "SKU", "duplicate_row", "Duplicate value for SKU; first seen on line 2."],
+      [4, null, "duplicate_row", "Duplicate value for Name, Quantity; first seen on line 3."]
+    ],
+    "created": []
+  }
+}
