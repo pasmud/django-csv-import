@@ -60,6 +60,13 @@ def isolated_database(sqlite_database):
 
 
 def assert_issues(issues, expected):
+    # Django versions may emit field and model errors in different orders.
+    issues = sorted(
+        issues, key=lambda issue: (issue.line or 0, issue.column or "", issue.code)
+    )
+    expected = sorted(
+        expected, key=lambda vector: (vector[0] or 0, vector[1] or "", vector[2])
+    )
     triples = [(i.line, i.column, i.code) for i in issues]
     assert triples == [tuple(i[:3]) for i in expected]
     for issue, vector in zip(issues, expected, strict=True):
