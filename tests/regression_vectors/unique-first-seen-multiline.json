@@ -1,0 +1,15 @@
+{
+  "title": "Cite the start of a multiline duplicate and its first record",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,\"Trail\nMap\"\ndemo-b,1,\"Trail\nMap\"",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Trail\nMap"]
+    ],
+    "issues": [
+      [4, null, "duplicate_row", "Duplicate value for Name, Quantity; first seen on line 2."]
+    ],
+    "created": []
+  }
+}
