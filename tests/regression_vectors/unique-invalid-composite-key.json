@@ -1,0 +1,15 @@
+{
+  "title": "Do not reserve a label pair from an invalid form",
+  "csv": "SKU,Quantity,Name\nwrong,1,Map\ndemo-a,1,Map",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [3, "demo-a", "1", "Map"]
+    ],
+    "issues": [
+      [2, "SKU", "sku_prefix"]
+    ],
+    "created": []
+  }
+}
