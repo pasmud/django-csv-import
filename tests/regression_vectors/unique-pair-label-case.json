@@ -1,0 +1,17 @@
+{
+  "title": "Keep case differences in composite label keys",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\ndemo-b,1,map",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map"],
+      [3, "demo-b", "1", "map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", 1, "Map", "server default", true],
+      ["DEMO-B", 1, "map", "server default", true]
+    ]
+  }
+}
