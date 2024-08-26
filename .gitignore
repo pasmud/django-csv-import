@@ -1,4 +1,5 @@
 .venv/
+.venv-django60/
 .wheel-venv/
 .uv-cache/
 .uv-python/

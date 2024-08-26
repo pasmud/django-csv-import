@@ -6,8 +6,25 @@ build-backend = "hatchling.build"
 name = "django-csv-import"
 version = "0.1.0"
 description = "Explicit, validated CSV imports for Django models and admin"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.11"
 dependencies = ["Django>=5.2,<6.1"]
+classifiers = [
+    "Framework :: Django :: 5.2",
+    "Framework :: Django :: 6.0",
+    "Programming Language :: Python :: 3",
+]
+
+[project.optional-dependencies]
+dev = ["build>=1.2", "pytest>=8", "ruff>=0.11", "twine>=6"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/django_csv_import"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/tests", "/example", "/pyproject.toml", "/README.md", "/LICENSE", "/.gitignore"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src", "."]
