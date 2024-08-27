@@ -1,0 +1,15 @@
+{
+  "title": "Compare zero-padded integers in composite keys",
+  "csv": "SKU,Quantity,Name\ndemo-a,01,Map\ndemo-b,1,Map",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "01", "Map"]
+    ],
+    "issues": [
+      [3, null, "duplicate_row", "Duplicate value for Name, Quantity; first seen on line 2."]
+    ],
+    "created": []
+  }
+}
