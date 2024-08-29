@@ -1,0 +1,18 @@
+{
+  "title": "Allow repeated product names, prices, and stock with new SKUs",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-a,1,1,Map\ndemo-b,1.00,1,Map",
+  "profile": "product",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [
+      [2, "demo-a", "1", "1", "Map"],
+      [3, "demo-b", "1.00", "1", "Map"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A", "1.00", 1, "Map"],
+      ["DEMO-B", "1.00", 1, "Map"]
+    ]
+  }
+}
