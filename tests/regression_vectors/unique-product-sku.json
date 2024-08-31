@@ -1,0 +1,16 @@
+{
+  "title": "Detect cleaned SKU repeats on the example product model",
+  "csv": "SKU,Unit price,Stock,Product name\ndemo-a,1,1,Map\n DEMO-A ,2,2,Lamp",
+  "profile": "product",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Unit price", "Stock", "Product name"],
+    "sample": [
+      [2, "demo-a", "1", "1", "Map"]
+    ],
+    "issues": [
+      [3, "SKU", "duplicate_row", "Duplicate value for SKU; first seen on line 2."]
+    ],
+    "created": []
+  }
+}
