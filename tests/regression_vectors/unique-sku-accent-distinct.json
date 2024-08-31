@@ -1,0 +1,17 @@
+{
+  "title": "Keep accented and unaccented SKUs distinct",
+  "csv": "SKU,Quantity,Name\ndemo-é,1,Map\ndemo-e,2,Lamp",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-é", "1", "Map"],
+      [3, "demo-e", "2", "Lamp"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-É", 1, "Map", "server default", true],
+      ["DEMO-E", 2, "Lamp", "server default", true]
+    ]
+  }
+}
