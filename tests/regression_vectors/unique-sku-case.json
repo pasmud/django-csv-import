@@ -1,0 +1,15 @@
+{
+  "title": "Compare SKUs after case cleaning, not raw text",
+  "csv": "SKU,Quantity,Name\ndemo-a,1,Map\nDEMO-A,2,Lamp",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a", "1", "Map"]
+    ],
+    "issues": [
+      [3, "SKU", "duplicate_row", "Duplicate value for SKU; first seen on line 2."]
+    ],
+    "created": []
+  }
+}
