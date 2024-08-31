@@ -1,0 +1,15 @@
+{
+  "title": "Compare SKUs after trimming surrounding whitespace",
+  "csv": "SKU,Quantity,Name\n  DEMO-A\t,1,Map\nDEMO-A,2,Lamp",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "  DEMO-A\t", "1", "Map"]
+    ],
+    "issues": [
+      [3, "SKU", "duplicate_row", "Duplicate value for SKU; first seen on line 2."]
+    ],
+    "created": []
+  }
+}
