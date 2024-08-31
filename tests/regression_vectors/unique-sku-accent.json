@@ -1,0 +1,15 @@
+{
+  "title": "Compare SKUs after Unicode uppercase conversion",
+  "csv": "SKU,Quantity,Name\ndemo-café,1,Map\nDEMO-CAFÉ,2,Lamp",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-café", "1", "Map"]
+    ],
+    "issues": [
+      [3, "SKU", "duplicate_row", "Duplicate value for SKU; first seen on line 2."]
+    ],
+    "created": []
+  }
+}
