@@ -1,0 +1,17 @@
+{
+  "title": "Do not collapse interior whitespace in SKU keys",
+  "csv": "SKU,Quantity,Name\ndemo-a b,1,Map\ndemo-ab,2,Lamp",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-a b", "1", "Map"],
+      [3, "demo-ab", "2", "Lamp"]
+    ],
+    "issues": [],
+    "created": [
+      ["DEMO-A B", 1, "Map", "server default", true],
+      ["DEMO-AB", 2, "Lamp", "server default", true]
+    ]
+  }
+}
