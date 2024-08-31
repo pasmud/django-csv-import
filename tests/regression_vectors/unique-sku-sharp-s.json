@@ -1,0 +1,15 @@
+{
+  "title": "Detect a cleaned SKU collision after uppercase expansion",
+  "csv": "SKU,Quantity,Name\ndemo-ß,1,Map\nDEMO-SS,2,Lamp",
+  "expect": {
+    "row_count": 2,
+    "headers": ["SKU", "Quantity", "Name"],
+    "sample": [
+      [2, "demo-ß", "1", "Map"]
+    ],
+    "issues": [
+      [3, "SKU", "duplicate_row", "Duplicate value for SKU; first seen on line 2."]
+    ],
+    "created": []
+  }
+}
